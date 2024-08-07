@@ -1,68 +1,41 @@
 name: hello-world
 
-on: 
-  
+on:
   push:
     branches: ["main"]
 
-
 jobs:
-  # Build Job
-  # test:
-
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: Checkout Code
-  #       uses: actions/checkout@v3
-
-  #     - name: Install Node
-  #       uses: actions/setup-node@v3
-
-  #       with:
-  #         node-version: 18.x
-
-  #     - name: Install Dependencies
-  #       run: npm install
-
-  #     - name: Build Project
-  #       run: npm run build
-
-  #     - name: Upload artifact to enable deployment
-  #       uses: actions/upload-artifact@v3
-
-  #       with:
-  #         name: production-files
-  #         path: ./dist
-
   deploy:
     runs-on: ubuntu-latest
-    # needs: test
 
     steps:
-    # - name: Download artifact
-    #   uses: actions/download-artifact@v3
-    #   with:
-    #     name: production-files
+    - name: Checkout Code
+      uses: actions/checkout@v3
 
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@v0.1.10
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
+        node-version: 18.x
 
-        script: |
-        
-          cd /home/github-runner/salom
-          git stash
-          git pull
-          # npm install
-          # npm run build
-  
-    - name: Build
-      run: |
-        ls -la
-        chmod +x ./deploy.sh
-        ./deploy.sh
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Project
+      run: npm run build
+
+    - name: Upload artifact to enable deployment
+      uses: actions/upload-artifact@v3
+      with:
+        name: production-files
+        path: ./dist
+
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: production-files
+
+    # - name: Build
+    #   run: |
+    #     ls -la
+    #     chmod +x ./deploy.sh
+    #     ./deploy.sh
