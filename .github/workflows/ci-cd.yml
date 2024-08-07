@@ -54,7 +54,8 @@ jobs:
           cd /home/github-runner/salom
           git stash
           git pull
-          npm install && npm run build
+          run: npm run build
+
   
     # - name: Build
     #   run: |
