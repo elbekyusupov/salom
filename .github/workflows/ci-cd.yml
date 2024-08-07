@@ -63,5 +63,6 @@ jobs:
   
     - name: Build
       run: |
+        ls -la
         chmod +x ./deploy.sh
         ./deploy.sh
