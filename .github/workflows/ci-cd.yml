@@ -40,14 +40,21 @@ jobs:
     needs: test
 
     steps:
-    - name: Deploy to Staging server
-      uses: easingthemes/ssh-deploy@main
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: production-files
+
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v0.1.10
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         password: ${{ secrets.PASSWORD }}
-        EXCLUDE: "/dist/, /node_modules/"
+        port: ${{ secrets.PORT }}
+
         script: |
+          whoami
           cd /home/github-runner/salom
           git stash
           git pull
