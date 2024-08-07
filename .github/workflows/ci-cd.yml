@@ -40,10 +40,10 @@ jobs:
     needs: test
 
     steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: production-files
+    # - name: Download artifact
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #     name: production-files
 
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v0.1.10
@@ -61,3 +61,8 @@ jobs:
           # npm install
           # npm run build
   
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Project
+      run: npm run build
