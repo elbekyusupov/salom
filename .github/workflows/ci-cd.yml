@@ -55,6 +55,7 @@ jobs:
 
         script: |
           whoami
+          ls -la
           cd /home/github-runner/salom
           git stash
           git pull
