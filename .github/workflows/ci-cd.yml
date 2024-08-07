@@ -61,8 +61,7 @@ jobs:
           # npm install
           # npm run build
   
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Build Project
-      run: npm run build
+    - name: Build
+      run: |
+        chmod +x deploy.sh
+        ./deploy.sh
