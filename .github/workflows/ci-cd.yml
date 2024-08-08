@@ -11,13 +11,13 @@ on:
 
 jobs:
   # Build Job
-  test:
+  # test:
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v3
 
       # - name: Install Node
       #   uses: actions/setup-node@v3
@@ -34,7 +34,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: test
+    # needs: test
 
     steps:
 
@@ -63,14 +63,14 @@ jobs:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          🚀 Deployment
+          ${{ job.status == 'success' && '🚀 Deployment muvaffaqiyatli yakunlandi!' || '❌ Xatolik yuz berdi!' }}
           Make ${{ github.event_name }}. 
           Job ${{github.job}}, 
           Status: ${{github.action_status}},
           action ${{github.action}}
-          Commit message: ${{ github.event.commits[0].message }}
-          Status: ${{ github.job_status }}
-          Error Details: ${{ steps.deploy.outputs.error }}
+          # Commit message: ${{ github.event.commits[0].message }}
+          # Status: ${{ github.job_status }}
+          # Error Details: ${{ steps.deploy.outputs.error }}
         
     # - name: Notify Telegram on Success
     #   if: success()
