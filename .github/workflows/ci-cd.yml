@@ -62,7 +62,13 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: 👨🏻‍💻 User ${{github.actor}} in ${{ github.repository }} repository. Make ${{ github.event_name }}. Job ${{github.job}}.
+        message: |
+          🚀 Deployment
+          Make ${{ github.event_name }}. 
+          Job ${{github.job}}, 
+          Status: ${{github.action_status}},
+          action ${{github.action}}
+          action1 ${{github.event}}
         
     # - name: Notify Telegram on Success
     #   if: success()
