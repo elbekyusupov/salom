@@ -68,7 +68,9 @@ jobs:
           Job ${{github.job}}, 
           Status: ${{github.action_status}},
           action ${{github.action}}
-          action1 ${{github.event}}
+          Commit message: ${{ github.event.commits[0].message }}
+          Status: ${{ github.job_status }}
+          Error Details: ${{ steps.deploy.outputs.error }}
         
     # - name: Notify Telegram on Success
     #   if: success()
