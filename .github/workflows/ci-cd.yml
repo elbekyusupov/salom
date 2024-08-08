@@ -19,17 +19,17 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install Node
-        uses: actions/setup-node@v3
+      # - name: Install Node
+      #   uses: actions/setup-node@v3
 
-        with:
-          node-version: 18.x
+      #   with:
+      #     node-version: 18.x
 
-      - name: Install Dependencies
-        run: npm install
+      # - name: Install Dependencies
+      #   run: npm install
 
-      - name: Build Project
-        run: npm run build
+      # - name: Build Project
+      #   run: npm run build
 
 
   deploy:
@@ -58,8 +58,17 @@ jobs:
           npm install --yes
           npm run build
         
-    - name: Notify Telegram
+    - name: Notify Telegram on Success
+      if: success()
       run: |
         curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage \
         -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
         -d text="🚀 Deployment muvaffaqiyatli yakunlandi!"
+    
+    - name: Notify Telegram on Failure
+      if: failure()
+      run: |
+        echo "Error Details: ${{ steps.deploy.outputs.error }}"
+        curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage \
+        -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
+        -d text="❌ Xatolik yuz berdi! Iltimos, jarayonni tekshiring.\n\nError Details: ${{ steps.deploy.outputs.error }}"
