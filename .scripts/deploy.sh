@@ -8,11 +8,11 @@ git pull origin main
 echo "New changes copied to server !"
 
 echo "Installing Dependencies..."
-npm install --yes
+/root/.nvm/versions/node/v22.3.0/bin/npm install --yes
 
 echo "Creating Production Build..."
 # For ReactJS VueJS and Nuxt JS
-npm run build
+/root/.nvm/versions/node/v22.3.0/bin/npm run build
 
 # For NextJS
 # npm run export
