@@ -65,9 +65,12 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
           ${{ job.status == 'success' && '🚀 Deployment muvaffaqiyatli yakunlandi!' || '❌ Xatolik yuz berdi!' }}
-          Make ${{ runner }}. 
-          Job ${{ job }}, 
+          Make ${{ toJson(runner) }}. 
+          Job ${{ toJson(job) }}, 
           Status: ${{ job.status }},
+          Job ${{ toJson(vars) }}, 
+          Job ${{ toJson(inputs) }}, 
+          Job ${{ toJson(steps) }}, 
          
     # - name: Notify Telegram on Success
     #   if: success()
