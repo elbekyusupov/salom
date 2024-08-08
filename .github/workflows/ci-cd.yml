@@ -53,11 +53,13 @@ jobs:
         port: ${{ secrets.PORT }}
 
         script: |
+          whoami
+          cd /home/salom
           git stash
           git pull
           /root/.nvm/versions/node/v22.3.0/bin/npm install --yes
           /root/.nvm/versions/node/v22.3.0/bin/npm run build
-          
+
           # cd /home/salom && git stash 
           # chmod +x /home/salom/.scripts/deploy.sh
           # ./.scripts/deploy.sh
