@@ -58,6 +58,7 @@ jobs:
           npm install --yes
           npm run build
     - name: send custom message with args
+      if: always()
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
