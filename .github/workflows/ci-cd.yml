@@ -53,18 +53,18 @@ jobs:
         port: ${{ secrets.PORT }}
 
         script: |
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+          # export NVM_DIR="$HOME/.nvm"
+          # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-          whoami
-          cd /home/salom
-          git stash
-          git pull
-          npm install --yes
-          npm run build
+          # whoami
+          # cd /home/salom
+          # git stash
+          # git pull
+          # npm install --yes
+          # npm run build
 
-          # cd /home/salom && git stash 
-          # chmod +x /home/salom/.scripts/deploy.sh
-          # ./.scripts/deploy.sh
+          cd /home/salom 
+          chmod +x /home/salom/.scripts/deploy.sh
+          ./.scripts/deploy.sh
           
