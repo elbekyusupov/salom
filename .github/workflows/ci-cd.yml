@@ -38,15 +38,13 @@ jobs:
           npm install --yes
           npm run build
           
-    - name: send custom message with args
-      if: always()
       
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_CHAT_ID }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          
-          ${{ job.status == 'success' && '✅✅✅ Deployment muvaffaqiyatli yakunlandi!' || '❌❌❌ Xatolik yuz berdi!' }}
-          Status: ${{ job.status }},
+    - name: Notify Telegram
+      if: always() # bu holatda har doim ishlaydi, hatto xato bo'lsa ham
+      run: |
+        status_message="${{ job.status == 'success' && '✅✅✅ Deployment muvaffaqiyatli yakunlandi!' || '❌❌❌ Xatolik yuz berdi!' }}"
+        curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage \
+        -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
+        -d text="$status_message Status: ${{ job.status }}" \
+        # -d message_thread_id=${{ secrets.TELEGRAM_THREAD_ID }}
           
