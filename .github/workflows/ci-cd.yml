@@ -4,6 +4,9 @@ on:
   
   push:
     branches: ["main"]
+  
+  pull_request:
+    branches: ["main"]
 
 
 jobs:
@@ -49,16 +52,4 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
 
-        script: |
-        
-          cd /home/github-runner/salom
-          git stash
-          git pull
-          run: npm run build
-
-  
-    # - name: Build
-    #   run: |
-    #     ls -la
-    #     chmod +x ./deploy.sh
-    #     ./deploy.sh
+        script: "cd /home/salom && ./.scripts/deploy.sh"
