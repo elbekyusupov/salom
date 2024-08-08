@@ -11,6 +11,7 @@ echo "Deployment started..."
 # Pull the latest version of the app
 whoami
 cd /home/salom
+ls -la
 git stash
 git pull
 echo "New changes copied to server!"
