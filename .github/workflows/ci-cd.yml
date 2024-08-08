@@ -64,7 +64,6 @@ jobs:
           # npm install --yes
           # npm run build
 
-          cd /home/salom 
           chmod +x /home/salom/.scripts/deploy.sh
-          ./.scripts/deploy.sh
+          /home/salom/.scripts/deploy.sh
           
