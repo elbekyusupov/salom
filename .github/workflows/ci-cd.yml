@@ -65,14 +65,10 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
           ${{ job.status == 'success' && '🚀 Deployment muvaffaqiyatli yakunlandi!' || '❌ Xatolik yuz berdi!' }}
-          Make ${{ github.event_name }}. 
-          Job ${{github.job}}, 
-          Status: ${{github.action_status}},
-          action ${{github.action}}
-          # Commit message: ${{ (github.event.commits[0].message )}}
-          # Status: ${{ (github.job_status) }}
-          Error Details: ${{ (steps.deploy.out.err) }}
-        
+          Make ${{ runner }}. 
+          Job ${{ job }}, 
+          Status: ${{ job.status }},
+         
     # - name: Notify Telegram on Success
     #   if: success()
     #   run: |
