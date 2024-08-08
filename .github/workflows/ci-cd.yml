@@ -53,5 +53,6 @@ jobs:
         port: ${{ secrets.PORT }}
 
         script: |
+          git stash
           chmod +x /home/salom/.scripts/deploy.sh
           cd /home/salom && ./.scripts/deploy.sh
