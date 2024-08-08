@@ -52,8 +52,8 @@ jobs:
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
           whoami
-          cd /home/salom
-          git stash1
+          cd /home/salom1
+          git stash
           git pull
           npm install --yes
           npm run build
