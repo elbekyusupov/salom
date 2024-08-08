@@ -31,13 +31,13 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-          # whoami
-          # cd /home/salom
+          whoami
+          cd /home/salom
           git stash
           git pull
           npm install --yes
           npm run build
-
+          
     - name: send custom message with args
       if: always()
       
