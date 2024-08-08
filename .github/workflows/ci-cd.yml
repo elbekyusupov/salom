@@ -52,4 +52,6 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
 
-        script: "cd /home/salom && ./.scripts/deploy.sh"
+        script: |
+          chmod +x /home/salom/.scripts/deploy.sh
+          cd /home/salom && ./.scripts/deploy.sh
