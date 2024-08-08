@@ -9,7 +9,8 @@ export NVM_DIR="$HOME/.nvm"
 echo "Deployment started..."
 
 # Pull the latest version of the app
-# cd /home/salom
+whoami
+cd /home/salom
 git stash
 git pull
 echo "New changes copied to server!"
