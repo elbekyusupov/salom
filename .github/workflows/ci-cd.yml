@@ -64,25 +64,7 @@ jobs:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
+          
           ${{ job.status == 'success' && '🚀 Deployment muvaffaqiyatli yakunlandi!' || '❌ Xatolik yuz berdi!' }}
-          Make ${{ toJson(runner) }}. 
-          Job ${{ toJson(job) }}, 
           Status: ${{ job.status }},
-          Job ${{ toJson(vars) }}, 
-          Job ${{ toJson(inputs) }}, 
-          Job ${{ toJson(steps) }}, 
-         
-    # - name: Notify Telegram on Success
-    #   if: success()
-    #   run: |
-    #     curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage \
-    #     -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
-    #     -d text="🚀 Deployment muvaffaqiyatli yakunlandi!"
-    
-    # - name: Notify Telegram on Failure
-    #   if: failure()
-    #   run: |
-    #     echo "Error Details: ${{ steps.deploy.outputs.error }}"
-    #     curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage \
-    #     -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
-    #     -d text="❌ Xatolik yuz berdi! Iltimos, jarayonni tekshiring.\n\nError Details: ${{ steps.deploy.outputs.error }}"
+          
