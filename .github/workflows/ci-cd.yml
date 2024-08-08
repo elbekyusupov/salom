@@ -53,7 +53,7 @@ jobs:
 
           whoami
           cd /home/salom
-          git stash
+          git stash1
           git pull
           npm install --yes
           npm run build
