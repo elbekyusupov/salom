@@ -37,6 +37,7 @@ jobs:
           git pull
           npm install --yes
           npm run build
+          pm2 list
           
       
     - name: Notify Telegram
